@@ -1,5 +1,4 @@
 
-
 /********************************/
 /*        Pin connection        */
 /********************************/
@@ -169,3 +168,7 @@ int convert_Hex_Dec(int valeur_hex);
 /* Output : void                                                                     */
 /*...................................................................................*/
 void Aff_valeur(int c);
+
+void Aff_valeur_decimal(int c);
+
+void showTime(int minute);

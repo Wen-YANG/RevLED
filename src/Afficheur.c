@@ -278,3 +278,33 @@ void Aff_valeur(int c)
 	Aff_4carac(v);                          // affichage du tableau
 
 }
+void Aff_valeur_decimal(int c){
+    int digit1 =0 ,digit2 = 0,digit3 = 0,digit4 = 0;
+    volatile unsigned char v[4];
+
+    c %= 10000;//protection
+    digit1 = c/1000;
+    c = c%1000;
+    if(c%1000 != 0){
+        digit2 = c/100;
+        c = c%100;
+        if(c%100 != 0){
+            digit3 = c/10;
+            c = c%10;
+            if(c%10 !=0){
+                digit4 = c;
+            }
+        }
+    }
+
+    v[3] = (digit4);
+    v[2] = (digit3);
+    v[1] = (digit2);
+    v[0] = (digit1);
+    Aff_4carac(v);
+}
+
+void showTime(int min){
+    volatile int time = min%60 + ((min/60)*100);
+    Aff_valeur_decimal(time);
+}

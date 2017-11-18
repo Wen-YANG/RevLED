@@ -1,26 +1,35 @@
 #include <msp430.h>
-#include "PWMLED.h"
+#include "utils.h"
+
+bool buttonFlag;
+
 /*
  * interruption.c
  *
  *  Created on: 17 nov. 2017
- *      Author: a.detrez.14
+ *      Author: Wen
  */
-
 #pragma vector=PORT1_VECTOR
-__interrupt void TurnOnLED(){
-//	intensity ++;
-//	if(intensity >= 100){
-//		intensity = 0;
-//	}else{
-//	LEDLightUp();
-	P1OUT ^= BIT6;
-//	}
-		//for testing
-	TA0CTL &= ~TAIFG;//reset the flag
-//	if ((P1IN & BIT3) == BIT3){
-//		P1IES |= BIT3;
-//	}else{
-//		P1IES &= ~BIT3; // front montant
-//	}
+__interrupt void TurnOffLED(){
+    buttonFlag = true;      //set the global variable buttonFlag to 0
+                            //so the lights can be turned off
+
+    P1IFG &= ~(BIT3);       //reset the register flag
+    P1IES ^= BIT3;         //change the interruption detection
+}
+
+#pragma vector = TIMER0_A1_VECTOR
+void waitTimer0(unsigned int time){
+    long int i = 0;
+    do{
+        i++;
+    }while(i<time);
+}
+
+#pragma vector = TIMER1_A1_VECTOR
+void waitTimer1(unsigned int time){
+    int i = 0;
+    do{
+        i++;
+    }while(i<time);
 }

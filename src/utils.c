@@ -1,5 +1,7 @@
 #include <msp430.h>
 #include "utils.h"
+
+
 /*
  * utils.c
  * Ce fichier contient les fonctions de base de MSP430 utiles
@@ -41,28 +43,9 @@ void initSortie(int port, int bit){
     }
 }
 
-
-/*
- * activeInterruption : activer l'interruption pour detection sur front montant
- * non teste
- * exemple :
- *          activeInterruption(1,BIT2); // activer l'interruption sur P1.2
- */
-//void activeInterruption(int port, int bit){
-//    if(port ==1){
-//        P1IE |= bit;                        //activation du signal d interruption
-//        P1IES |= bit;                       //Detection sur front montant
-//    }else if(port == 2){
-//        P2IE |= bit;                        //activation du signal d interruption
-//        P2IES |= bit;                       //Detection sur front montant
-//    }// est ce que je mets enable_interrupt?
-//}
-
-void delay(unsigned int ms)
-{
-	volatile unsigned int i=ms, z;
-	while (i--) {
-		z=100;
-		while(z--);
-	}
+// Initialize the button on P1.3
+//Enable interruption on P1.3
+void initButton(){
+    P1IE |= BIT3;
+    P1IES &= ~BIT3;
 }
