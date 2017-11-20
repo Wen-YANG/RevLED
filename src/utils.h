@@ -26,4 +26,6 @@ void initEntree(int port, int bit);
  */
 void initSortie(int port, int bit);
 
+void initButton();
+
 #endif // UTILS_H

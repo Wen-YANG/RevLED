@@ -20,10 +20,13 @@ __interrupt void TurnOffLED(){
 
 #pragma vector = TIMER0_A1_VECTOR
 void waitTimer0(unsigned int time){
-    long int i = 0;
-    do{
-        i++;
-    }while(i<time);
+    int i,j;
+    for(i = 0;i<time;i++){
+        j = 0;
+        do{
+            j++;
+        }while(j<2420);
+    }
 }
 
 #pragma vector = TIMER1_A1_VECTOR
